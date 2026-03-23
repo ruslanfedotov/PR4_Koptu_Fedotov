@@ -1,0 +1,43 @@
+﻿
+<Page x:Class="PR4_Fedotov_Koptu.Page3"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:winForms="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+      xmlns:charts="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+      Title="Страница 3">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+
+        <Image Grid.Row="0" Source="task3.png" Height="100" HorizontalAlignment="Center" Margin="5" ToolTip="Формула 3"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+            <TextBlock Text="x0:" VerticalAlignment="Center" Margin="5"/>
+            <TextBox x:Name="txtX0" Width="80" Text="-0.75" Margin="5"/>
+            <TextBlock Text="xk:" VerticalAlignment="Center" Margin="5"/>
+            <TextBox x:Name="txtXk" Width="80" Text="-2.05" Margin="5"/>
+            <TextBlock Text="dx:" VerticalAlignment="Center" Margin="5"/>
+            <TextBox x:Name="txtDx" Width="80" Text="-0.2" Margin="5"/>
+        </StackPanel>
+
+        <!-- Кнопки -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+            <Button Content="Вычислить" Width="100" Height="30" Margin="5" Click="BtnCalc_Click"/>
+            <Button Content="Очистить" Width="100" Height="30" Margin="5" Click="BtnClear_Click"/>
+        </StackPanel>
+
+        <!-- График -->
+        <winForms:WindowsFormsHost Grid.Row="3" Margin="5">
+            <charts:Chart x:Name="ChartFunction"/>
+        </winForms:WindowsFormsHost>
+
+        <!-- Результаты -->
+        <TextBox x:Name="txtResults" Grid.Row="4" IsReadOnly="True" VerticalScrollBarVisibility="Auto" Margin="5" FontFamily="Courier New"/>
+    </Grid>
+</Page>
