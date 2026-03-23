@@ -6,7 +6,10 @@ namespace PR4_Fedotov_Koptu
 {
     public partial class Page2 : Page
     {
-        public Page2() => InitializeComponent();
+        public Page2()
+        {
+            InitializeComponent();
+        }
 
         private double GetFx(double x)
         {
@@ -17,47 +20,47 @@ namespace PR4_Fedotov_Koptu
 
         private void BtnCalc_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (string.IsNullOrWhiteSpace(txtX.Text) || string.IsNullOrWhiteSpace(txtM.Text))
             {
-                double x = double.Parse(txtX.Text);
-                double m = double.Parse(txtM.Text);
-                double fx = GetFx(x);
-                double result;
-
-                if (x == m)
-                {
-                    result = Math.Pow(fx + m, 2);
-                }
-                else if (x > m)
-                {
-                    result = Math.Cos(3 * fx + 5 * m * Math.Abs(fx));
-                }
-                else
-                {
-                    if (m > -1 && m < x)
-                    {
-                        result = Math.Sin(5 * fx + 3 * m * Math.Abs(fx));
-                    }
-                    else
-                    {
-                        throw new Exception("Условие -1 < m < x не выполняется");
-                    }
-                }
-
-                txtResult.Text = result.ToString("F6");
+                MessageBox.Show("Заполните все поля!", "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
-            catch (Exception ex)
+
+            if (!double.TryParse(txtX.Text, out double x) ||
+                !double.TryParse(txtM.Text, out double m))
             {
-                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Введите числовые значения!", "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
-        }
 
-        private void BtnClear_Click(object sender, RoutedEventArgs e)
-        {
-            txtX.Clear();
-            txtM.Clear();
-            txtResult.Clear();
-            rbX2.IsChecked = true;
+            double fx = GetFx(x);
+            double result;
+
+            // Ветка 1: -1 < m < x → sin
+            if (m > -1 && m < x)
+            {
+                result = Math.Sin(5 * fx + 3 * m * Math.Abs(fx));
+            }
+            // Ветка 2: x > m (но не попали в ветку 1) → cos
+            else if (x > m)
+            {
+                result = Math.Cos(3 * fx + 5 * m * Math.Abs(fx));
+            }
+            // Ветка 3: x = m → (f(x) + m)²
+            else if (x == m)
+            {
+                result = Math.Pow(fx + m, 2);
+            }
+            else
+            {
+                MessageBox.Show("Условие задачи не выполняется (x < m и x ≠ m).",
+                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            txtResult.Text = result.ToString("F6");
         }
     }
 }
