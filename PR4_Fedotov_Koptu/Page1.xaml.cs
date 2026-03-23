@@ -1,5 +1,4 @@
-﻿// Page1.xaml.cs - правильный вариант 8
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 

@@ -32,7 +32,7 @@ namespace PR4_Fedotov_Koptu
                 {
                     result = Math.Cos(3 * fx + 5 * m * Math.Abs(fx));
                 }
-                else // -1 < m < x (x > m, значит это условие не выполнится, поэтому проверяем m < x и m > -1)
+                else
                 {
                     if (m > -1 && m < x)
                     {

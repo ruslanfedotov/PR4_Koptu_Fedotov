@@ -26,18 +26,15 @@
             <TextBox x:Name="txtDx" Width="80" Text="-0.2" Margin="5"/>
         </StackPanel>
 
-        <!-- Кнопки -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
             <Button Content="Вычислить" Width="100" Height="30" Margin="5" Click="BtnCalc_Click"/>
             <Button Content="Очистить" Width="100" Height="30" Margin="5" Click="BtnClear_Click"/>
         </StackPanel>
 
-        <!-- График -->
         <winForms:WindowsFormsHost Grid.Row="3" Margin="5">
             <charts:Chart x:Name="ChartFunction"/>
         </winForms:WindowsFormsHost>
 
-        <!-- Результаты -->
         <TextBox x:Name="txtResults" Grid.Row="4" IsReadOnly="True" VerticalScrollBarVisibility="Auto" Margin="5" FontFamily="Courier New"/>
     </Grid>
 </Page>
